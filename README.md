@@ -57,8 +57,8 @@ Go to \CoolMeal\i-cube-lrwan_V1.1.5\STM32CubeExpansion_LRWAN_V1.1.5\Projects\Mul
  
 ![image](https://drive.google.com/uc?export=view&id=1S3OefQd81Le0X-aaqf3QF1A209wH5QDk)
 
-* In the first case the Person cross respectively the _Front Zone_, the _interzone_ then the _Back Zone_. 
-* In the other case the Person cross respectively the *Back Zone*, the *interzone* then The *Front Zone*.
+* In the first case the Person cross respectively the **Front Zone**, the **Interzone** then the **Back Zone**. 
+* In the other case the Person cross respectively the **Back Zone**, the **Interzone** then The **Front Zone**.
 
 The Pathtrack Buffer will be filled regarding the direction of the Person : 
 
