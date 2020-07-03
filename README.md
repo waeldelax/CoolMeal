@@ -53,7 +53,8 @@ Go to \CoolMeal\i-cube-lrwan_V1.1.5\STM32CubeExpansion_LRWAN_V1.1.5\Projects\Mul
  
  ## How does it works:
  
- The spads of Tof are divided in two Region of Interest (Front zone and Back zone) it measures alternately each Region, from that we can determine a pathtrack and increment or decrement a counter then grasshopper will send a lorawan frame (payload) thanks to a timer event (each 15s).
+ ### Pathrack Management 
+ The spads of Tof are divided in two Region of Interest (Front zone and Back zone) it measures alternately each Region, from that we can determine a pathtrack and increment or decrement a counter then grasshopper will send a lorawan frame (payload) thanks to a timer event.
  
 ![image](https://drive.google.com/uc?export=view&id=1S3OefQd81Le0X-aaqf3QF1A209wH5QDk)
 
@@ -64,5 +65,17 @@ The Pathtrack Buffer will be filled regarding the direction of the Person :
 
 **[0,2,3,1,0]** or **[0,1,3,2,0]**
  
+ ### Sending Lora Frame Management
+
+To respect the Lora time on air limitation, The Maximum Frame sent by the Sensor per Hour is 720 with a SF7. 
+
+The Code implements 2 Timer : 
+
+* TXTimerEvent : This one is a counter of 5s that allow to keep the interval between 2 frame above 5s duration
+* LedTimerEvent : This is a counter of 10 minutes that allow to send a frame if no event occured for 10 minutes in order to inform the LoraServer that he is still Alive.
+
+The Device is sending frame only if The people Counter is not 0. It means that if someone cross all the Zones and no event occurred for more than 5s and less than 10min, A frame will be instantly sent to the LoraServer
+But in the case of no one crossed all the zone since 10 minutes, The Device will sent an alive frame Anyway to inform that he is still working. 
+
  It's compatible with the Things Networks (https://www.thethingsnetwork.org/) or Chirpstack server (https://www.chirpstack.io/) or others lorawan networks. 
 
